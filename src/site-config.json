@@ -1,0 +1,548 @@
+{
+  "business": {
+    "name": "Y-Not-Flooring",
+    "phone": "+19292375065",
+    "category": "flooring contractor",
+    "city": "New York",
+    "state": "NY"
+  },
+  "design": {
+    "preset": {
+      "id": "roofing-red-charge",
+      "categoryGroup": "roofing",
+      "name": "Red Charge",
+      "recipeFile": "roofing/red-charge.astro",
+      "colors": {
+        "primary": "#1F3A56",
+        "primaryDark": "#152B42",
+        "primaryLight": "#D0DCE8",
+        "secondary": "#2B4C6F",
+        "accent": "#DC143C",
+        "background": "#FFFFFF",
+        "backgroundAlt": "#1F3A56",
+        "surface": "#F5F7FA",
+        "text": "#111827",
+        "textLight": "#6B7280",
+        "textOnDark": "#FFFFFF",
+        "border": "#E5E7EB"
+      },
+      "typography": {
+        "headingFont": "DM Sans",
+        "headingWeight": "700",
+        "bodyFont": "Inter",
+        "bodyWeight": "400",
+        "headingStyle": "normal",
+        "scale": "1.2"
+      },
+      "shape": {
+        "borderRadius": "8px",
+        "buttonRadius": "8px",
+        "cardRadius": "12px",
+        "shadowStyle": "soft"
+      },
+      "sections": {
+        "heroStyle": "dark",
+        "sectionAlternation": [
+          "light",
+          "surface",
+          "light",
+          "surface",
+          "light"
+        ],
+        "animationStyle": "fade",
+        "spacingScale": "balanced"
+      }
+    },
+    "recipeId": "roofing/red-charge"
+  },
+  "content": {
+    "homepage": {
+      "heroHeadline": "NYC's Flooring Experts",
+      "heroSubline": "Durable, beautiful floors built to last. Serving New York and surrounding areas with pride and precision.",
+      "aboutTitle": "Built on Grit, Defined by Quality",
+      "aboutText": [
+        "Y-Not-Flooring started with a simple goal: to provide reliable, high-quality flooring services to the people of New York. We're not just installers; we're craftsmen who understand the unique challenges of working in this city.",
+        "Our approach is straightforward: honest assessments, clear communication, and meticulous execution. We treat every project, from a small apartment to a large commercial space, with the same level of dedication and attention to detail.",
+        "We're committed to our community because we live here too. We source materials locally whenever possible and actively support local initiatives. When you choose Y-Not-Flooring, you're choosing a partner invested in the future of New York."
+      ],
+      "valueProps": [
+        {
+          "title": "Experienced Professionals",
+          "description": "Our team has decades of combined experience in all types of flooring installation and repair."
+        },
+        {
+          "title": "Quality Materials",
+          "description": "We use only the best materials from trusted suppliers, ensuring durability and longevity."
+        },
+        {
+          "title": "Guaranteed Satisfaction",
+          "description": "We stand behind our work. If you're not happy, we'll make it right."
+        },
+        {
+          "title": "Transparent Pricing",
+          "description": "No hidden fees or surprises. We provide clear, detailed estimates upfront."
+        }
+      ],
+      "ctaHeadline": "Get a Free Flooring Quote",
+      "ctaSubline": "Transform your space with floors that stand the test of time. Contact us today!"
+    },
+    "services": [
+      {
+        "slug": "hardwood-flooring-installation",
+        "name": "Hardwood Flooring Installation",
+        "shortDescription": "Expert hardwood installation for lasting beauty and value.",
+        "description": "We specialize in hardwood flooring installation, bringing timeless elegance to homes and businesses throughout New York. From classic oak to exotic hardwoods, we handle every aspect of the installation process with precision and care. Our experienced installers understand the nuances of working with hardwood, ensuring a flawless finish that enhances the natural beauty of the wood. We take into account the unique characteristics of each space, considering factors like moisture levels and subfloor conditions to ensure a durable and long-lasting installation. \n\nWhether you're renovating a brownstone in Brooklyn or updating a condo in Manhattan, we have the expertise to deliver exceptional results. We offer a wide range of hardwood options to suit any style and budget. Our team will guide you through the selection process, helping you choose the perfect wood to complement your décor. We handle everything from subfloor preparation to the final coat of finish, ensuring a smooth and seamless installation. \n\nWe pride ourselves on our attention to detail and commitment to customer satisfaction. Our goal is to provide you with hardwood floors that you'll love for years to come.",
+        "process": [
+          "Step 1: Consultation and Measurement - We assess your space and provide a detailed quote.",
+          "Step 2: Material Selection - Choose from our wide range of hardwood options.",
+          "Step 3: Subfloor Preparation - We ensure a level and stable base for your new floors.",
+          "Step 4: Installation - Expert installation with minimal disruption to your home."
+        ],
+        "benefits": [
+          "Increases Property Value",
+          "Adds Timeless Elegance",
+          "Durable and Long-Lasting",
+          "Easy to Maintain"
+        ],
+        "faq": [
+          {
+            "question": "How long does hardwood installation take?",
+            "answer": "The duration depends on the size and complexity of the project, but typically it takes 2-5 days."
+          },
+          {
+            "question": "What types of hardwood do you offer?",
+            "answer": "We offer a wide variety of hardwoods, including oak, maple, cherry, walnut, and exotic species."
+          },
+          {
+            "question": "Do you offer refinishing services?",
+            "answer": "Yes, we provide hardwood refinishing services to restore the beauty of your existing floors."
+          }
+        ]
+      },
+      {
+        "slug": "laminate-flooring-installation",
+        "name": "Laminate Flooring Installation",
+        "shortDescription": "Affordable and durable laminate flooring expertly installed.",
+        "description": "Looking for a cost-effective and durable flooring solution? Our laminate flooring installation service is the perfect choice for homeowners and businesses in New York. Laminate flooring offers the look of real wood or tile at a fraction of the price. It's also incredibly resistant to scratches, stains, and wear, making it ideal for high-traffic areas. We offer a wide selection of laminate flooring options, from classic woodgrain patterns to modern tile designs. \n\nOur experienced installers ensure a precise and professional installation, paying close attention to detail to create a seamless and beautiful finish. We understand the importance of proper subfloor preparation to ensure a long-lasting and durable laminate floor. Whether you're renovating a rental property in Queens or updating your home in the Bronx, we have the expertise to deliver exceptional results. \n\nWe're committed to providing our customers with the best possible service and value. Our team will work with you to choose the perfect laminate flooring to suit your style and budget. We handle everything from material selection to the final cleanup, ensuring a hassle-free installation experience.",
+        "process": [
+          "Step 1: Consultation and Measurement - We assess your space and provide a detailed quote.",
+          "Step 2: Material Selection - Choose from our wide range of laminate options.",
+          "Step 3: Subfloor Preparation - Ensuring a level and clean base for the install.",
+          "Step 4: Installation - Precise and efficient laminate flooring installation."
+        ],
+        "benefits": [
+          "Affordable Flooring Option",
+          "Durable and Scratch-Resistant",
+          "Easy to Clean and Maintain",
+          "Wide Variety of Styles"
+        ],
+        "faq": [
+          {
+            "question": "Is laminate flooring waterproof?",
+            "answer": "While laminate is water-resistant, it's not completely waterproof. We recommend avoiding excessive moisture exposure."
+          },
+          {
+            "question": "How long does laminate flooring last?",
+            "answer": "With proper care and maintenance, laminate flooring can last for 10-20 years."
+          },
+          {
+            "question": "Can laminate flooring be installed over existing floors?",
+            "answer": "In many cases, laminate flooring can be installed over existing floors, provided the subfloor is level and stable."
+          }
+        ]
+      },
+      {
+        "slug": "vinyl-flooring-installation",
+        "name": "Vinyl Flooring Installation",
+        "shortDescription": "Waterproof vinyl flooring for kitchens, bathrooms, and more.",
+        "description": "For waterproof and stylish flooring, consider our vinyl flooring installation services. Ideal for kitchens, bathrooms, and basements, vinyl flooring offers exceptional moisture resistance and durability. We offer a wide range of vinyl options, including sheet vinyl, vinyl tile, and luxury vinyl planks (LVP), in various styles and colors to suit any décor. Our skilled installers ensure a seamless and waterproof installation, paying close attention to detail to prevent leaks and water damage. \n\nWe understand the importance of proper subfloor preparation for a long-lasting and durable vinyl floor. Our team will assess your space and recommend the best vinyl flooring solution for your needs. Whether you're renovating a bathroom in Staten Island or updating a kitchen in Manhattan, we have the expertise to deliver exceptional results. \n\nWe're committed to providing our customers with the highest quality vinyl flooring and installation services. Our goal is to create a beautiful and functional space that you'll enjoy for years to come.",
+        "process": [
+          "Step 1: Consultation and Measurement - Assessing the space and providing a detailed quote.",
+          "Step 2: Material Selection - Choose from various vinyl flooring styles and colors.",
+          "Step 3: Subfloor Preparation - Ensuring a smooth and level subfloor.",
+          "Step 4: Installation - Expert vinyl flooring installation for a waterproof finish."
+        ],
+        "benefits": [
+          "Waterproof and Moisture-Resistant",
+          "Durable and Long-Lasting",
+          "Easy to Clean and Maintain",
+          "Wide Variety of Styles"
+        ],
+        "faq": [
+          {
+            "question": "Is vinyl flooring suitable for basements?",
+            "answer": "Yes, vinyl flooring is an excellent choice for basements due to its moisture resistance."
+          },
+          {
+            "question": "How do I clean vinyl flooring?",
+            "answer": "Vinyl flooring can be easily cleaned with a damp mop and mild detergent."
+          },
+          {
+            "question": "What is the difference between sheet vinyl and vinyl tile?",
+            "answer": "Sheet vinyl comes in large rolls, while vinyl tile comes in individual squares or planks."
+          }
+        ]
+      },
+      {
+        "slug": "tile-flooring-installation",
+        "name": "Tile Flooring Installation",
+        "shortDescription": "Durable and stylish tile flooring for any room.",
+        "description": "Tile flooring is a classic and versatile option for any room in your home. From ceramic and porcelain to natural stone, we offer a wide range of tile options to suit any style and budget. Our experienced tile installers have the skills and expertise to create stunning tile floors that will last for years to come. We pay close attention to detail, ensuring precise cuts, even grout lines, and a flawless finish. \n\nWhether you're renovating a bathroom, kitchen, or entryway, we can help you choose the perfect tile to complement your décor. We understand the importance of proper subfloor preparation for a long-lasting and durable tile floor. Our team will assess your space and recommend the best tile flooring solution for your needs. \n\nWe're committed to providing our customers with the highest quality tile flooring and installation services. Our goal is to create a beautiful and functional space that you'll enjoy for years to come.",
+        "process": [
+          "Step 1: Consultation and Measurement - Assessing the space and providing a detailed quote.",
+          "Step 2: Material Selection - Choosing from various tile styles, colors, and materials.",
+          "Step 3: Subfloor Preparation - Ensuring a level and stable subfloor.",
+          "Step 4: Installation - Expert tile flooring installation with precise cuts and grout lines."
+        ],
+        "benefits": [
+          "Durable and Long-Lasting",
+          "Water-Resistant",
+          "Easy to Clean",
+          "Versatile Design Options"
+        ],
+        "faq": [
+          {
+            "question": "What is the difference between ceramic and porcelain tile?",
+            "answer": "Porcelain tile is denser and more water-resistant than ceramic tile, making it suitable for high-moisture areas."
+          },
+          {
+            "question": "How do I clean tile flooring?",
+            "answer": "Tile flooring can be cleaned with a damp mop and mild detergent. Avoid using abrasive cleaners that can damage the grout."
+          },
+          {
+            "question": "Can tile flooring be heated?",
+            "answer": "Yes, radiant heating systems can be installed under tile flooring for added comfort."
+          }
+        ]
+      },
+      {
+        "slug": "floor-repair-and-restoration",
+        "name": "Floor Repair and Restoration",
+        "shortDescription": "Restore your floors to their former glory with expert repair services.",
+        "description": "Don't replace your damaged floors – restore them! Our floor repair and restoration services can breathe new life into worn, scratched, or damaged floors. We specialize in repairing hardwood, laminate, vinyl, and tile floors, addressing issues such as water damage, cracks, scratches, and loose tiles. Our experienced technicians use the latest techniques and equipment to restore your floors to their original beauty. \n\nWe understand the importance of preserving the character and value of your home. Our team will carefully assess the damage and recommend the most effective repair solution. Whether you need a simple scratch repair or a complete floor restoration, we have the expertise to deliver exceptional results. \n\nWe're committed to providing our customers with the highest quality floor repair and restoration services. Our goal is to save you money and extend the life of your floors.",
+        "process": [
+          "Step 1: Damage Assessment - Evaluating the extent of the damage to your floors.",
+          "Step 2: Repair Plan - Developing a customized repair plan to address the specific issues.",
+          "Step 3: Repair and Restoration - Expert repair and restoration using the latest techniques.",
+          "Step 4: Finishing - Applying a protective finish to enhance the beauty and durability of your floors."
+        ],
+        "benefits": [
+          "Saves Money on Replacement",
+          "Extends the Life of Your Floors",
+          "Restores the Beauty of Your Home",
+          "Environmentally Friendly"
+        ],
+        "faq": [
+          {
+            "question": "Can you repair water-damaged hardwood floors?",
+            "answer": "Yes, we can repair water-damaged hardwood floors, but the extent of the damage will determine the best course of action."
+          },
+          {
+            "question": "How long does floor repair take?",
+            "answer": "The duration of floor repair depends on the extent of the damage and the type of flooring. We'll provide an estimated timeline during the initial assessment."
+          },
+          {
+            "question": "Do you offer dustless sanding?",
+            "answer": "Yes, we offer dustless sanding for hardwood floor refinishing to minimize mess and disruption."
+          }
+        ]
+      },
+      {
+        "slug": "subfloor-installation-and-repair",
+        "name": "Subfloor Installation and Repair",
+        "shortDescription": "Ensure a solid foundation with our subfloor services.",
+        "description": "A solid subfloor is essential for a long-lasting and beautiful floor. We specialize in subfloor installation and repair, ensuring a level and stable base for your new or existing flooring. Our experienced technicians can handle any subfloor issue, from water damage and rot to uneven surfaces and structural problems. \n\nWe understand the importance of proper subfloor preparation for a successful flooring installation. Our team will carefully assess your subfloor and recommend the best solution for your needs. Whether you need a complete subfloor replacement or a simple repair, we have the expertise to deliver exceptional results. We work with all types of subflooring materials, including plywood, OSB, and concrete. \n\nWe're committed to providing our customers with the highest quality subfloor services. Our goal is to ensure a solid foundation for your floors, protecting your investment for years to come.",
+        "process": [
+          "Step 1: Subfloor Inspection - Assessing the condition of your existing subfloor.",
+          "Step 2: Repair or Replacement - Repairing or replacing damaged sections of the subfloor.",
+          "Step 3: Leveling - Ensuring a level and even surface for the new flooring.",
+          "Step 4: Reinforcement - Strengthening the subfloor as needed to prevent future problems."
+        ],
+        "benefits": [
+          "Ensures a Solid Foundation",
+          "Prevents Flooring Problems",
+          "Extends the Life of Your Floors",
+          "Improves the Overall Appearance of Your Home"
+        ],
+        "faq": [
+          {
+            "question": "Why is a good subfloor important?",
+            "answer": "A solid subfloor provides a stable and level surface for your flooring, preventing cracks, squeaks, and other problems."
+          },
+          {
+            "question": "How do I know if my subfloor needs repair?",
+            "answer": "Signs of subfloor problems include uneven floors, squeaking, soft spots, and water damage."
+          },
+          {
+            "question": "Can you install a new subfloor over an existing one?",
+            "answer": "In some cases, a new subfloor can be installed over an existing one, but it's important to assess the condition of the existing subfloor first."
+          }
+        ]
+      }
+    ],
+    "serviceAreas": [
+      {
+        "city": "New York",
+        "slug": "new-york-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is proud to serve the vibrant and diverse city of New York. From the historic brownstones of Brooklyn to the modern high-rises of Manhattan, we offer a wide range of flooring solutions to meet the unique needs of every home and business. We understand the specific challenges of working in NYC, including tight spaces, building regulations, and the need for durable, long-lasting materials. \n\nOur experienced team is dedicated to providing exceptional service and quality craftsmanship. Whether you're looking to install hardwood floors in your Upper West Side apartment, replace the carpeting in your Financial District office, or refinish the floors in your Greenwich Village townhouse, Y-Not-Flooring has you covered. We work with all types of flooring, including hardwood, tile, laminate, vinyl, and carpet. We're committed to delivering beautiful and functional floors that will enhance your space for years to come.",
+        "localContext": "New York City is a global hub for finance, culture, and fashion, with a unique blend of historic charm and modern innovation. The city's diverse architecture and fast-paced lifestyle demand flooring solutions that are both stylish and durable.",
+        "nearbyAreas": [
+          "Jersey City, NJ",
+          "Hoboken, NJ",
+          "Newark, NJ"
+        ]
+      },
+      {
+        "city": "Yonkers",
+        "slug": "yonkers-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring provides expert flooring services to the residents and businesses of Yonkers, New York's fourth-largest city. We understand the needs of Yonkers homeowners, from the historic neighborhoods along the Hudson River to the more suburban areas further inland. We offer a wide selection of flooring options to suit any style and budget.\n\nWhether you're renovating a historic home, updating a modern apartment, or building a new commercial space, Y-Not-Flooring has the expertise to handle any project. We are committed to providing high-quality workmanship and exceptional customer service. Our team will work with you to choose the perfect flooring solution for your needs and ensure a seamless installation process.",
+        "localContext": "Yonkers is a diverse city with a rich history and a thriving arts scene. Its location along the Hudson River provides beautiful scenery and a unique blend of urban and suburban living.",
+        "nearbyAreas": [
+          "Bronxville",
+          "Mount Vernon",
+          "Riverdale"
+        ]
+      },
+      {
+        "city": "White Plains",
+        "slug": "white-plains-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is proud to offer its flooring services to the residents and businesses of White Plains. As a major commercial and residential center in Westchester County, White Plains demands high-quality flooring solutions that are both stylish and durable. We understand the needs of homeowners and business owners in this vibrant city and are committed to providing exceptional service.\n\nFrom hardwood installations to carpet replacements, we offer a wide range of flooring options to suit any taste and budget. Our experienced team will work with you every step of the way, from selecting the perfect flooring to ensuring a flawless installation. We are dedicated to exceeding your expectations and providing you with floors that you will love for years to come.",
+        "localContext": "White Plains is a bustling city known for its shopping centers, corporate headquarters, and beautiful residential neighborhoods. It's a vibrant community with a mix of urban and suburban lifestyles.",
+        "nearbyAreas": [
+          "Scarsdale",
+          "Hartsdale",
+          "Rye"
+        ]
+      },
+      {
+        "city": "Mount Vernon",
+        "slug": "mount-vernon-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is dedicated to providing top-notch flooring services in Mount Vernon, NY. We understand the unique character of Mount Vernon's homes and businesses, from its historic districts to its modern developments. Our goal is to offer flooring solutions that enhance the beauty and value of every property.\n\nWhether you're looking to install new hardwood floors, replace old carpeting, or update your tile, we have the expertise and selection to meet your needs. We work closely with our clients to understand their vision and provide personalized recommendations. Our commitment to quality and customer satisfaction sets us apart.",
+        "localContext": "Mount Vernon is a vibrant and diverse city with a rich history and a strong sense of community. Its proximity to New York City makes it a desirable place to live and work.",
+        "nearbyAreas": [
+          "Bronx",
+          "Yonkers",
+          "New Rochelle"
+        ]
+      },
+      {
+        "city": "New Rochelle",
+        "slug": "new-rochelle-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is pleased to serve the community of New Rochelle, NY, offering a comprehensive range of flooring services. Recognizing the diverse architectural styles in New Rochelle, from waterfront properties to historic homes, we tailor our flooring solutions to meet the specific needs and aesthetic preferences of each client.\n\nOur services include hardwood installation, carpet replacement, tile work, and more. We are committed to providing high-quality workmanship and exceptional customer service, ensuring that every project is completed to the highest standards. Whether you're renovating your home or upgrading your business space, Y-Not-Flooring is your trusted partner for all your flooring needs.",
+        "localContext": "New Rochelle is a vibrant coastal city with a rich history and a diverse population. Its beautiful waterfront, excellent schools, and thriving downtown make it a desirable place to live and work.",
+        "nearbyAreas": [
+          "Larchmont",
+          "Mamaroneck",
+          "Pelham"
+        ]
+      },
+      {
+        "city": "Bronx",
+        "slug": "bronx-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is proud to offer its professional flooring services to the residents and businesses of the Bronx. We understand the unique needs of this vibrant borough, from the historic homes in City Island to the modern apartments in the South Bronx. Our team is committed to providing high-quality workmanship and exceptional customer service.\n\nWe offer a wide range of flooring options, including hardwood, tile, laminate, and carpet, to suit any style and budget. Whether you're renovating your home, updating your office, or building a new property, Y-Not-Flooring has the expertise to handle any project. We are dedicated to exceeding your expectations and providing you with floors that will enhance your space for years to come.",
+        "localContext": "The Bronx is a diverse and dynamic borough known for its cultural institutions, including the Bronx Zoo and the New York Botanical Garden, as well as its vibrant music and arts scene.",
+        "nearbyAreas": [
+          "Yonkers",
+          "Manhattan",
+          "Mount Vernon"
+        ]
+      },
+      {
+        "city": "Staten Island",
+        "slug": "staten-island-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is delighted to provide flooring services to the residents and businesses of Staten Island. We understand the unique character of Staten Island, from its coastal communities to its more suburban neighborhoods. We offer a wide variety of flooring options to meet the needs of any home or business.\n\nWhether you're looking for hardwood, tile, laminate, or carpet, we have the perfect flooring solution for you. Our experienced team is committed to providing exceptional customer service and quality workmanship. We will work with you every step of the way to ensure that your flooring project is a success.",
+        "localContext": "Staten Island offers a mix of urban and suburban living, with beautiful parks, beaches, and a strong sense of community. It's a borough known for its family-friendly atmosphere and affordable housing.",
+        "nearbyAreas": [
+          "Brooklyn",
+          "New Jersey",
+          "Manhattan"
+        ]
+      },
+      {
+        "city": "Mamaroneck",
+        "slug": "mamaroneck-ny",
+        "state": "NY",
+        "content": "Y-Not-Flooring is dedicated to providing expert flooring services to the residents and businesses of Mamaroneck, NY. We understand the unique needs of this coastal community, from the waterfront properties to the charming village center. Our goal is to offer flooring solutions that enhance the beauty and value of every property.\n\nWhether you're looking to install new hardwood floors, replace old carpeting, or update your tile, we have the expertise and selection to meet your needs. We work closely with our clients to understand their vision and provide personalized recommendations. Our commitment to quality and customer satisfaction sets us apart in Mamaroneck.",
+        "localContext": "Mamaroneck is a picturesque village known for its beautiful harbor, excellent schools, and vibrant downtown area. It's a desirable place to live with a strong sense of community.",
+        "nearbyAreas": [
+          "Larchmont",
+          "Rye",
+          "New Rochelle"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "name": "Maria S.",
+        "rating": 5,
+        "service": "Hardwood Flooring Installation",
+        "text": "Y-Not-Flooring did an amazing job installing new hardwood floors in my living room. The team was professional, efficient, and the floors look absolutely beautiful. I highly recommend them!",
+        "date": "2024-09-15"
+      },
+      {
+        "name": "David K.",
+        "rating": 4,
+        "service": "Laminate Flooring Installation",
+        "text": "I hired Y-Not-Flooring to install laminate flooring in my basement. They were quick and the price was fair. There was a small issue with a warped plank, but they came back and fixed it promptly. Good service.",
+        "date": "2024-10-28"
+      },
+      {
+        "name": "Jessica L.",
+        "rating": 5,
+        "service": "Vinyl Flooring Installation",
+        "text": "The team at Y-Not-Flooring transformed my outdated bathroom with new vinyl flooring. The installation was seamless, and the floor is completely waterproof. I couldn't be happier with the results!",
+        "date": "2024-11-05"
+      },
+      {
+        "name": "Michael B.",
+        "rating": 5,
+        "service": "Floor Repair and Restoration",
+        "text": "My hardwood floors were badly scratched and worn. Y-Not-Flooring's repair and restoration service brought them back to life! They look like new again. I was impressed with their attention to detail.",
+        "date": "2024-12-12"
+      },
+      {
+        "name": "Sarah T.",
+        "rating": 4,
+        "service": "Tile Flooring Installation",
+        "text": "We had Y-Not-Flooring install tile in our kitchen and are generally pleased. There were some delays due to material shortages, but the final product is excellent. Clean work, and the tile looks great.",
+        "date": "2025-01-20"
+      },
+      {
+        "name": "Anthony R.",
+        "rating": 5,
+        "service": "Subfloor Installation and Repair",
+        "text": "Y-Not-Flooring fixed a major subfloor issue in my apartment. They were thorough, explained everything clearly, and the new floor is perfectly level. Highly recommend their expertise.",
+        "date": "2025-02-03"
+      }
+    ],
+    "seo": {
+      "homepage": {
+        "title": "Y-Not-Flooring | NYC Flooring Contractor",
+        "description": "Expert flooring installation and repair in New York. Hardwood, laminate, vinyl, and tile. Free quotes!"
+      },
+      "about": {
+        "title": "About Y-Not-Flooring | NYC Flooring Experts",
+        "description": "Learn about Y-Not-Flooring, your trusted flooring contractor in New York. Quality, experience, and commitment."
+      },
+      "services": {
+        "title": "Flooring Services | Y-Not-Flooring NYC",
+        "description": "Comprehensive flooring services in New York: Hardwood installation, laminate, vinyl, tile, and floor repair."
+      },
+      "contact": {
+        "title": "Contact Y-Not-Flooring | Get a Free Quote",
+        "description": "Contact Y-Not-Flooring for a free quote on your next flooring project in New York. Call us at +19292375065."
+      },
+      "reviews": {
+        "title": "Y-Not-Flooring Reviews | Customer Testimonials",
+        "description": "Read reviews from satisfied Y-Not-Flooring customers in New York. See why we're the top choice for flooring services."
+      },
+      "service-areas": {
+        "title": "Y-Not-Flooring Service Areas | NYC & Beyond",
+        "description": "Y-Not-Flooring provides flooring services in New York City and surrounding areas. Check our service area map."
+      }
+    },
+    "companyInfo": {
+      "yearsInBusiness": 12,
+      "projectsCompleted": "800+",
+      "satisfaction": "97%",
+      "teamSize": "20+"
+    }
+  },
+  "images": {
+    "hero": "/images/hero.webp",
+    "heroResponsive": {
+      "src": "/images/hero.webp",
+      "srcset": "/images/hero-400w.webp 400w, /images/hero-800w.webp 800w, /images/hero-1200w.webp 1200w, /images/hero.webp 1376w",
+      "sizes": "100vw",
+      "width": 1376,
+      "height": 768
+    },
+    "about": "/images/about.webp",
+    "aboutResponsive": {
+      "src": "/images/about.webp",
+      "srcset": "/images/about-400w.webp 400w, /images/about-800w.webp 800w, /images/about-1200w.webp 1200w, /images/about.webp 1200w",
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "width": 1200,
+      "height": 896
+    },
+    "services": {
+      "hardwood-flooring-installation": "/images/service-hardwood-flooring-installation.webp",
+      "laminate-flooring-installation": "/images/service-laminate-flooring-installation.webp",
+      "vinyl-flooring-installation": "/images/service-vinyl-flooring-installation.webp",
+      "tile-flooring-installation": "/images/service-tile-flooring-installation.webp",
+      "floor-repair-and-restoration": "/images/service-floor-repair-and-restoration.webp",
+      "subfloor-installation-and-repair": "/images/service-subfloor-installation-and-repair.webp"
+    },
+    "servicesResponsive": {
+      "hardwood-flooring-installation": {
+        "src": "/images/service-hardwood-flooring-installation.webp",
+        "srcset": "/images/service-hardwood-flooring-installation-400w.webp 400w, /images/service-hardwood-flooring-installation-800w.webp 800w, /images/service-hardwood-flooring-installation-1200w.webp 1200w, /images/service-hardwood-flooring-installation.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "laminate-flooring-installation": {
+        "src": "/images/service-laminate-flooring-installation.webp",
+        "srcset": "/images/service-laminate-flooring-installation-400w.webp 400w, /images/service-laminate-flooring-installation-800w.webp 800w, /images/service-laminate-flooring-installation-1200w.webp 1200w, /images/service-laminate-flooring-installation.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "vinyl-flooring-installation": {
+        "src": "/images/service-vinyl-flooring-installation.webp",
+        "srcset": "/images/service-vinyl-flooring-installation-400w.webp 400w, /images/service-vinyl-flooring-installation-800w.webp 800w, /images/service-vinyl-flooring-installation-1200w.webp 1200w, /images/service-vinyl-flooring-installation.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "tile-flooring-installation": {
+        "src": "/images/service-tile-flooring-installation.webp",
+        "srcset": "/images/service-tile-flooring-installation-400w.webp 400w, /images/service-tile-flooring-installation-800w.webp 800w, /images/service-tile-flooring-installation-1200w.webp 1200w, /images/service-tile-flooring-installation.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "floor-repair-and-restoration": {
+        "src": "/images/service-floor-repair-and-restoration.webp",
+        "srcset": "/images/service-floor-repair-and-restoration-400w.webp 400w, /images/service-floor-repair-and-restoration-800w.webp 800w, /images/service-floor-repair-and-restoration-1200w.webp 1200w, /images/service-floor-repair-and-restoration.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      },
+      "subfloor-installation-and-repair": {
+        "src": "/images/service-subfloor-installation-and-repair.webp",
+        "srcset": "/images/service-subfloor-installation-and-repair-400w.webp 400w, /images/service-subfloor-installation-and-repair-800w.webp 800w, /images/service-subfloor-installation-and-repair-1200w.webp 1200w, /images/service-subfloor-installation-and-repair.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      }
+    },
+    "gallery": [
+      "/images/gallery-0.webp",
+      "/images/gallery-1.webp"
+    ],
+    "galleryResponsive": [
+      {
+        "src": "/images/gallery-0.webp",
+        "srcset": "/images/gallery-0-400w.webp 400w, /images/gallery-0-800w.webp 800w, /images/gallery-0-1200w.webp 1200w, /images/gallery-0.webp 1200w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1200,
+        "height": 896
+      },
+      {
+        "src": "/images/gallery-1.webp",
+        "srcset": "/images/gallery-1-400w.webp 400w, /images/gallery-1-800w.webp 800w, /images/gallery-1-1200w.webp 1200w, /images/gallery-1.webp 1264w",
+        "sizes": "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
+        "width": 1264,
+        "height": 848
+      }
+    ]
+  }
+}

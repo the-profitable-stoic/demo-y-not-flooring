@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://demo-y-not-flooring.dream-surge.com/sitemap-index.xml

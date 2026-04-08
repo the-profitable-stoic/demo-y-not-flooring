@@ -1,0 +1,1934 @@
+---
+/**
+ * Recipe: Red Charge
+ * Category: Roofing
+ * Reference: One Nation Exteriors (onenationexteriors.com)
+ *
+ * Bold navy + crimson red palette. Plus Jakarta Sans headings, Inter body.
+ * Designed for high-conversion roofing companies with strong local presence.
+ * Self-contained — NO external component imports.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StickyMinimal from "../../components/nav/StickyMinimal.astro";
+import MultiColumn from "../../components/footer/MultiColumn.astro";
+import { siteConfig } from "../lib/site-config";
+import { getSeoForPage } from "../lib/seo";
+
+const seo = getSeoForPage("homepage");
+const biz = siteConfig.business;
+const content = siteConfig.content;
+const homepage = content.homepage;
+const services = content.services;
+const serviceAreas = content.serviceAreas;
+const reviews = content.reviews;
+const info = content.companyInfo;
+const images = siteConfig.images;
+const heroR = (images as any).heroResponsive;
+const servicesR = (images as any).servicesResponsive || {};
+
+const displayServices = services.slice(0, 6);
+const displayAreas = serviceAreas.slice(0, 8);
+const displayReviews = reviews.slice(0, 6);
+const galleryImages = images.gallery?.length ? images.gallery.slice(0, 6) : Object.values(images.services || {}).slice(0, 3);
+const firstFaq = services[0]?.faq || [];
+
+// Slug-to-display-name mapping
+
+const ACRONYMS = new Set(["hvac", "ac", "bbq", "rv", "atv", "suv"]);
+function nicheDisplayName(input: string): string {
+  return input.split(/[\s-]+/).map(word => {
+    if (ACRONYMS.has(word.toLowerCase())) return word.toUpperCase();
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(" ");
+}
+const categoryDisplay = nicheDisplayName(biz.category);
+
+// Niche-aware language mappings
+const medicalNiches = new Set(["dentist", "chiropractor", "physical-therapy", "optometrist", "veterinarian"]);
+const autoNiches = new Set(["auto-repair", "auto-body", "auto-detailing", "towing", "tire-shop"]);
+const isMedical = medicalNiches.has(biz.category);
+const isAuto = autoNiches.has(biz.category);
+const ctaText = isMedical ? "Book an Appointment" : "Get a Free Estimate";
+const ctaAction = isMedical ? "Schedule a Visit" : isAuto ? "Get a Quote" : "Request an Estimate";
+
+// Niche display name → professional adjective form
+const NICHE_ADJECTIVES: Record<string, string> = {
+  "dentist": "Dental Care",
+  "chiropractor": "Chiropractic Care",
+  "optometrist": "Optometry",
+  "veterinarian": "Veterinary Care",
+  "physical-therapy": "Physical Therapy",
+  "auto-repair": "Auto Repair",
+  "auto-body": "Auto Body Repair",
+  "auto-detailing": "Auto Detailing",
+  "towing": "Towing",
+  "tire-shop": "Tire Service",
+  "electrical": "Electrical Services",
+  "solar": "Solar Installation",
+  "smart-home": "Smart Home Solutions",
+  "handyman": "Handyman Services",
+  "general-contractor": "General Contracting",
+  "kitchen-remodel": "Kitchen Remodeling",
+  "bath-remodel": "Bathroom Remodeling",
+  "garage-door": "Garage Door Service",
+};
+const categoryAdjective = NICHE_ADJECTIVES[biz.category] || categoryDisplay;
+
+// Article helper: "a" vs "an"
+const categoryArticle = /^[aeiou]/i.test(categoryDisplay) ? "an" : "a";
+
+
+
+const phone = biz.phone || "";
+const phoneFmt = phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+const email = biz.email || "";
+const city = biz.city || "Your City";
+const state = biz.state || "";
+const yearFounded = biz.yearFounded || 2010;
+const yearsExp = new Date().getFullYear() - yearFounded;
+const heroImg = images.hero;
+const logoImg = images.logo;
+
+const residentialServices = services.filter(s => {
+  const name = (s.name || s.title || "").toLowerCase();
+  return false; // All services go to additional grid
+}).slice(0, 4);
+
+const commercialServices = services.filter(s => {
+  const name = (s.name || s.title || "").toLowerCase();
+  return name.includes("commercial") || name.includes("multi") || name.includes("flat");
+}).slice(0, 3);
+
+const additionalServices = services.filter(s => {
+  const name = (s.name || s.title || "").toLowerCase();
+  return !name.includes("residential") && !name.includes("commercial") && !name.includes("multi");
+}).slice(0, 4);
+
+const reviewerColors = ["#1F3A56", "#DC143C", "#475569", "#1F3A56", "#DC143C", "#475569"];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogTitle={seo.ogTitle}
+  ogDescription={seo.ogDescription}
+>
+
+  <!-- ═══════════════════════════════════════════ TOP BAR ═══════════════════════════════════════════ -->
+  <StickyMinimal slot="nav" />
+
+  <!-- ═══════════════════════════════════════════ NAV ═══════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════ HERO ═══════════════════════════════════════════ -->
+  <section class="rc-hero">
+    {heroImg && <img src={heroImg} alt={`${biz.name} — professional ${categoryAdjective.toLowerCase()} services in ${city}`} class="rc-hero__bg" srcset={heroR?.srcset || ""} sizes="100vw" loading="eager" fetchpriority="high" />}
+    <div class="rc-hero__overlay"></div>
+    <div class="rc-hero__inner rc-container">
+      <div class="rc-hero__content">
+        <span class="rc-hero__badge">{`Trusted ${city} ${categoryAdjective} Experts`}</span>
+        <h1 class="rc-hero__title">{homepage.heroHeadline || `Leading the Way in ${categoryDisplay}`}</h1>
+        <p class="rc-hero__subtitle">{homepage?.heroSubline || `Trusted across ${city} for quality ${categoryDisplay.toLowerCase()} services. We deliver results backed by experience and dedication to excellence.`}</p>
+
+        <div class="rc-hero__trust">
+          <span class="rc-hero__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Family Owned &amp; Operated
+          </span>
+          <span class="rc-hero__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Industry Certified
+          </span>
+          <span class="rc-hero__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            {yearsExp}+ Years of Experience
+          </span>
+          <span class="rc-hero__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            5.0 Rating
+          </span>
+        </div>
+
+        <div class="rc-hero__reviews">
+          <div class="rc-hero__review-badges">
+            <span class="rc-hero__review-dot rc-hero__review-dot--google">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              5.0
+            </span>
+            <span class="rc-hero__review-dot rc-hero__review-dot--fb">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              5.0
+            </span>
+            <span class="rc-hero__review-dot rc-hero__review-dot--bbb">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              A+
+            </span>
+          </div>
+          <span class="rc-hero__review-label">Verified Reviews</span>
+        </div>
+      </div>
+
+      <div class="rc-hero__form-wrap">
+        <div class="rc-hero__form-card">
+          <h2 class="rc-hero__form-heading">{ctaText}</h2>
+          <form class="rc-hero__form" action="/contact/" method="GET">
+            <input type="text" name="name" placeholder="Full Name" required class="rc-hero__input" />
+            <input type="email" name="email" placeholder="Email Address" required class="rc-hero__input" />
+            <input type="tel" name="phone" placeholder="Phone Number" class="rc-hero__input" />
+            <select name="service" aria-label="Select a Service" class="rc-hero__input rc-hero__select">
+              <option value="">Select a Service</option>
+              {services.map(s => (
+                <option value={s.slug}>{s.name || s.title}</option>
+              ))}
+            </select>
+            <input type="text" name="address" placeholder="Your City / Zip Code" class="rc-hero__input" />
+            <label class="form-consent" style="display:flex;gap:0.5rem;align-items:flex-start;font-size:0.75rem;color:var(--color-text-light,#666);line-height:1.5;margin:0.75rem 0;"><input type="checkbox" name="consent" required style="margin-top:0.2rem;flex-shrink:0" /><span>By submitting, I consent to receive calls/texts from {biz.name} at the number provided. Msg & data rates may apply. Reply STOP to opt out. <a href="/privacy/" style="color:var(--color-primary);text-decoration:underline">Privacy Policy</a> & <a href="/terms/" style="color:var(--color-primary);text-decoration:underline">Terms</a>.</span></label>
+            <button type="submit" class="rc-btn rc-btn--primary rc-hero__submit">Get Started &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ TESTIMONIALS ═══════════════════════════════════════════ -->
+  <section class="rc-testimonials rc-section">
+    <div class="rc-container">
+      <div class="rc-testimonials__header">
+        <h2 class="rc-section__title">What Your Neighbors Have to Say</h2>
+        <a href="/reviews/" class="rc-link--arrow">Read More Reviews &rarr;</a>
+      </div>
+      <div class="rc-testimonials__grid">
+        {displayReviews.slice(0, 4).map((review, idx) => {
+          const name = review.author || review.name || "Happy Customer";
+          const initial = name.charAt(0).toUpperCase();
+          const color = reviewerColors[idx % reviewerColors.length];
+          return (
+            <div class="rc-testimonial-card">
+              <div class="rc-testimonial-card__top">
+                <span class="rc-testimonial-card__avatar" style={`background-color: ${color}`}>
+                  {initial}
+                </span>
+                <div class="rc-testimonial-card__meta">
+                  <span class="rc-testimonial-card__name">{name}</span>
+                  <span class="rc-testimonial-card__stars">
+                    {Array.from({ length: 5 }).map(() => (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    ))}
+                  </span>
+                </div>
+              </div>
+              <p class="rc-testimonial-card__text">{review.text || review.content || review.body}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SERVICES ═══════════════════════════════════════════ -->
+  <section class="rc-services rc-section rc-section--alt">
+    <div class="rc-container">
+      <div class="rc-services__header">
+        <h2 class="rc-section__title">Services Offered</h2>
+        <a href="/services/" class="rc-link--arrow">See All Services &rarr;</a>
+      </div>
+
+      <div class="rc-services__main-grid">
+        <!-- Residential Card -->
+        <div class="rc-services__card rc-services__card--main">
+          <h3 class="rc-services__card-title">{services[0]?.name || `${categoryDisplay} Services`}</h3>
+          <ul class="rc-services__card-list">
+            {residentialServices.length > 0 ? (
+              residentialServices.map(s => (
+                <li><a href={`/services/${s.slug}/`}>{s.name || s.title}</a></li>
+              ))
+            ) : (
+              <>
+                {services.slice(0, 3).map(s => <li>{s.name}</li>)}
+              </>
+            )}
+          </ul>
+          <a href="/services/" class="rc-link--arrow rc-services__card-link">Learn More &rarr;</a>
+        </div>
+
+        <!-- Commercial Card -->
+        <div class="rc-services__card rc-services__card--main">
+          <h3 class="rc-services__card-title">{services[1]?.name || `Commercial ${categoryDisplay}`}</h3>
+          <ul class="rc-services__card-list">
+            {commercialServices.length > 0 ? (
+              commercialServices.map(s => (
+                <li><a href={`/services/${s.slug}/`}>{s.name || s.title}</a></li>
+              ))
+            ) : (
+              <>
+                {services.slice(3, 6).map(s => <li>{s.name}</li>)}
+              </>
+            )}
+          </ul>
+          <a href="/services/" class="rc-link--arrow rc-services__card-link">Learn More &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Additional Services -->
+      <div class="rc-services__extra">
+        <h3 class="rc-services__extra-title">{`Additional ${categoryDisplay} Services`}</h3>
+        <div class="rc-services__extra-grid">
+          {additionalServices.length > 0 ? (
+            additionalServices.map(s => {
+              const sImg = images.services?.[s.slug];
+              return (
+                <a href={`/services/${s.slug}/`} class="rc-services__extra-item">
+                  {sImg && <img src={sImg} alt={s.name || s.title} class="rc-services__extra-img" loading="lazy" width="280" height="180" />}
+                  {!sImg && heroImg && <img src={heroImg} alt={s.name || s.title} class="rc-services__extra-img" loading="lazy" width="280" height="180" />}
+                  <span class="rc-services__extra-name">{s.name || s.title}</span>
+                </a>
+              );
+            })
+          ) : (
+            displayServices.slice(0, 4).map(s => {
+              const sImg = images.services?.[s.slug];
+              return (
+                <a href={`/services/${s.slug}/`} class="rc-services__extra-item">
+                  {sImg && <img src={sImg} alt={s.name || s.title} class="rc-services__extra-img" loading="lazy" width="280" height="180" />}
+                  {!sImg && heroImg && <img src={heroImg} alt={s.name || s.title} class="rc-services__extra-img" loading="lazy" width="280" height="180" />}
+                  <span class="rc-services__extra-name">{s.name || s.title}</span>
+                </a>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      <div class="rc-services__callout">
+        <div class="rc-services__callout-inner">
+          <div class="rc-services__callout-text">
+            <h3 class="rc-services__callout-title">{`${biz.name} — Certified Professionals`}</h3>
+            <p class="rc-services__callout-desc">{`Our team brings certified expertise and years of experience to every ${categoryDisplay.toLowerCase()} project. We stand behind our work with comprehensive warranties and a commitment to quality.`}</p>
+          </div>
+          <a href="/about/" class="rc-btn rc-btn--outline">More About Us &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PROCESS ═══════════════════════════════════════════ -->
+  <section class="rc-process rc-section">
+    <div class="rc-container">
+      <h2 class="rc-section__title rc-section__title--center">The {biz.name} Way</h2>
+      <p class="rc-section__subtitle">Our proven process ensures every project is completed with precision, transparency, and care.</p>
+
+      <div class="rc-process__steps">
+        <div class="rc-process__line"></div>
+
+        <div class="rc-process__step">
+          <div class="rc-process__number">1</div>
+          <div class="rc-process__content">
+            <h3 class="rc-process__step-title">Consultation</h3>
+            <p class="rc-process__step-desc">{`We start with a thorough, no-obligation assessment. Our certified team evaluates your needs and provides a detailed report with recommendations.`}</p>
+          </div>
+        </div>
+
+        <div class="rc-process__step">
+          <div class="rc-process__number">2</div>
+          <div class="rc-process__content">
+            <h3 class="rc-process__step-title">Plan & Prepare</h3>
+            <p class="rc-process__step-desc">{`We work with you to determine the best approach for your specific ${categoryDisplay.toLowerCase()} needs. Our experts ensure the right plan for quality results.`}</p>
+          </div>
+        </div>
+
+        <div class="rc-process__step">
+          <div class="rc-process__number">3</div>
+          <div class="rc-process__content">
+            <h3 class="rc-process__step-title">Get It Done</h3>
+            <p class="rc-process__step-desc">{isMedical ? "Our skilled team delivers your care with precision and attention to detail. We keep you informed and comfortable every step of the way." : "Our skilled team gets to work with precision and efficiency. We maintain a clean, organized environment and keep you informed every step of the way."}</p>
+          </div>
+        </div>
+
+        <div class="rc-process__step">
+          <div class="rc-process__number">4</div>
+          <div class="rc-process__content">
+            <h3 class="rc-process__step-title">Quality Check</h3>
+            <p class="rc-process__step-desc">{isMedical ? "We follow up to ensure your complete satisfaction and optimal results." : "Before we consider any job complete, our team performs a comprehensive quality review. We verify every detail meets our exacting standards."}</p>
+          </div>
+        </div>
+
+        <div class="rc-process__step">
+          <div class="rc-process__number">5</div>
+          <div class="rc-process__content">
+            <h3 class="rc-process__step-title">Wrap Up</h3>
+            <p class="rc-process__step-desc">Transparent pricing with no surprises. You only pay when you're 100% satisfied with the work. We offer flexible options to make the process seamless.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SERVICE AREA ═══════════════════════════════════════════ -->
+  <section class="rc-area rc-section rc-section--alt">
+    <div class="rc-container">
+      <h2 class="rc-section__title rc-section__title--center">Proudly Serving {city} &amp; Beyond</h2>
+      <p class="rc-section__subtitle">{`As a locally owned and operated company, we're proud to serve customers throughout ${city}${state ? `, ${state}` : ""} and the surrounding communities. Our team brings local expertise and dedication to every project.`}</p>
+
+      <div class="rc-area__grid">
+        {displayAreas.map(area => (
+          <a href={`/service-areas/${area.slug}/`} class="rc-area__tag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            {area.name || area.city}
+          </a>
+        ))}
+      </div>
+
+      <div class="rc-area__cta">
+        <a href="/contact/" class="rc-btn rc-btn--primary">Let's Get Started &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FAQ ═══════════════════════════════════════════ -->
+  <section class="rc-faq rc-section">
+    <div class="rc-container rc-faq__container">
+      <h2 class="rc-section__title rc-section__title--center">Frequently Asked Questions</h2>
+      <p class="rc-section__subtitle">Get answers to the most common questions {`about our ${categoryDisplay.toLowerCase()} services.`}</p>
+
+      <div class="rc-faq__list">
+        {firstFaq.length > 0 ? (
+          firstFaq.slice(0, 6).map((item, idx) => (
+            <details class="rc-faq__item" open={idx === 0}>
+              <summary class="rc-faq__question">
+                {item.question || item.q}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{item.answer || item.a}</p>
+              </div>
+            </details>
+          ))
+        ) : (
+          <>
+            <details class="rc-faq__item" open>
+              <summary class="rc-faq__question">
+{firstFaq[0]?.question || `How long does a typical project take?`}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{firstFaq[0]?.answer || `Project timelines vary based on scope and complexity. Contact us for a detailed estimate.`}</p>
+              </div>
+            </details>
+            <details class="rc-faq__item">
+              <summary class="rc-faq__question">
+                {firstFaq[1]?.question || `What sets your company apart?`}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{firstFaq[1]?.answer || `Our commitment to quality, transparent pricing, and customer satisfaction sets us apart.`}</p>
+              </div>
+            </details>
+            <details class="rc-faq__item">
+              <summary class="rc-faq__question">
+                {firstFaq[2]?.question || `Do you offer free estimates?`}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{firstFaq[2]?.answer || `Yes, we offer free, no-obligation estimates for all our services.`}</p>
+              </div>
+            </details>
+            <details class="rc-faq__item">
+              <summary class="rc-faq__question">
+                Do you offer financing options?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{firstFaq[3]?.answer || `Yes, we offer flexible options to fit your budget. Contact us for details.`}</p>
+              </div>
+            </details>
+            <details class="rc-faq__item">
+              <summary class="rc-faq__question">
+                What warranty do you provide on your work?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="rc-faq__chevron"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="rc-faq__answer">
+                <p>{firstFaq[4]?.answer || `We stand behind our work with comprehensive warranties on all services.`}</p>
+              </div>
+            </details>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FOOTER CTA ═══════════════════════════════════════════ -->
+  <section class="rc-footer-cta">
+    <div class="rc-container rc-footer-cta__inner">
+      <h2 class="rc-footer-cta__title">Built on {city} Values</h2>
+      <p class="rc-footer-cta__text">{homepage.ctaSubline || `Ready to work with a ${categoryDisplay.toLowerCase()} team that treats you like family? Let's get started today.`}</p>
+      <a href="/contact/" class="rc-btn rc-btn--primary rc-btn--lg">Let's Begin &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FOOTER ═══════════════════════════════════════════ -->
+  <MultiColumn slot="footer" />
+
+</BaseLayout>
+
+<!-- ═══════════════════════════════════════════ MOBILE MENU JS ═══════════════════════════════════════════ -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("rc-menu-btn");
+    const menu = document.getElementById("rc-menu");
+    const nav = document.getElementById("rc-nav");
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        menu.classList.toggle("rc-nav__links--open");
+        btn.classList.toggle("rc-nav__toggle--active");
+      });
+    }
+
+    // Dropdown hover + click for mobile
+    document.querySelectorAll(".rc-nav__dropdown").forEach((dd) => {
+      const trigger = dd.querySelector(".rc-nav__dropdown-trigger");
+      if (trigger) {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          const isOpen = dd.classList.contains("rc-nav__dropdown--open");
+          document.querySelectorAll(".rc-nav__dropdown--open").forEach((d) => d.classList.remove("rc-nav__dropdown--open"));
+          if (!isOpen) dd.classList.add("rc-nav__dropdown--open");
+        });
+      }
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".rc-nav__dropdown")) {
+        document.querySelectorAll(".rc-nav__dropdown--open").forEach((d) => d.classList.remove("rc-nav__dropdown--open"));
+      }
+    });
+
+    // Sticky nav
+    let lastScroll = 0;
+    window.addEventListener("scroll", () => {
+      const curr = window.scrollY;
+      if (nav) {
+        if (curr > 100) {
+          nav.classList.add("rc-nav--scrolled");
+        } else {
+          nav.classList.remove("rc-nav--scrolled");
+        }
+      }
+      lastScroll = curr;
+    }, { passive: true });
+  });
+</script>
+
+<!-- ═══════════════════════════════════════════ STYLES ═══════════════════════════════════════════ -->
+<style>
+  /* ─── Variables ─── */
+  :root {
+    --rc-navy: #1F3A56;
+    --rc-navy-dark: #162a40;
+    --rc-red: #DC143C;
+    --rc-red-hover: #b8112f;
+    --rc-white: #FFFFFF;
+    --rc-light: #F5F5F5;
+    --rc-text: #1F2937;
+    --rc-text-light: #6B7280;
+    --rc-border: #E5E7EB;
+    --rc-heading-font: 'Plus Jakarta Sans', sans-serif;
+    --rc-body-font: 'Inter', sans-serif;
+    --rc-radius: 4px;
+    --rc-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    --rc-shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --rc-transition: 0.2s ease;
+    --rc-nav-height: 72px;
+    --rc-topbar-height: 40px;
+  }
+
+  /* ─── Reset & Base ─── */
+  .rc-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .rc-section {
+    padding: 5rem 0;
+  }
+
+  .rc-section--alt {
+    background: var(--rc-light);
+  }
+
+  .rc-section__title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 2.25rem;
+    color: var(--rc-navy);
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+
+  .rc-section__title--center {
+    text-align: center;
+  }
+
+  .rc-section__subtitle {
+    font-family: var(--rc-body-font);
+    color: var(--rc-text-light);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .rc-link--arrow {
+    font-family: var(--rc-body-font);
+    font-weight: 600;
+    color: var(--rc-red);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-link--arrow:hover {
+    color: var(--rc-red-hover);
+  }
+
+  /* ─── Buttons ─── */
+  .rc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--rc-body-font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.875rem 2rem;
+    border-radius: var(--rc-radius);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+    line-height: 1;
+  }
+
+  .rc-btn--primary {
+    background: var(--rc-red);
+    color: var(--rc-white);
+    border-color: var(--rc-red);
+  }
+
+  .rc-btn--primary:hover {
+    background: var(--rc-red-hover);
+    border-color: var(--rc-red-hover);
+  }
+
+  .rc-btn--outline {
+    background: transparent;
+    color: var(--rc-white);
+    border-color: var(--rc-white);
+  }
+
+  .rc-btn--outline:hover {
+    background: var(--rc-white);
+    color: var(--rc-navy);
+  }
+
+  .rc-btn--lg {
+    padding: 1.125rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  /* ─── Top Bar ─── */
+  .rc-topbar {
+    background: var(--rc-navy);
+    color: rgba(255,255,255,0.85);
+    font-family: var(--rc-body-font);
+    font-size: 0.8rem;
+    height: var(--rc-topbar-height);
+  }
+
+  .rc-topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .rc-topbar__left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .rc-topbar__link {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-topbar__link:hover {
+    color: var(--rc-white);
+  }
+
+  .rc-topbar__right {
+    display: flex;
+    align-items: center;
+  }
+
+  .rc-topbar__social {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .rc-topbar__social-link {
+    color: rgba(255,255,255,0.7);
+    transition: color var(--rc-transition);
+    display: inline-flex;
+  }
+
+  .rc-topbar__social-link:hover {
+    color: var(--rc-white);
+  }
+
+  /* ─── Nav ─── */
+  .rc-nav {
+    background: var(--rc-white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--rc-shadow);
+    height: var(--rc-nav-height);
+    transition: box-shadow var(--rc-transition);
+  }
+
+  .rc-nav--scrolled {
+    box-shadow: var(--rc-shadow-md);
+  }
+
+  .rc-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .rc-nav__brand {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .rc-nav__logo {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .rc-nav__brand-text {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--rc-navy);
+  }
+
+  .rc-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .rc-nav__link {
+    font-family: var(--rc-body-font);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--rc-text);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--rc-radius);
+    transition: color var(--rc-transition), background var(--rc-transition);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .rc-nav__link:hover {
+    color: var(--rc-red);
+    background: rgba(220,20,60,0.04);
+  }
+
+  .rc-nav__phone {
+    font-family: var(--rc-body-font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--rc-navy);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-nav__phone:hover {
+    color: var(--rc-red);
+  }
+
+  .rc-nav__cta {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.65rem 1.25rem;
+  }
+
+  /* ─── Nav Dropdown ─── */
+  .rc-nav__dropdown {
+    position: relative;
+  }
+
+  .rc-nav__dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--rc-white);
+    min-width: 220px;
+    border-radius: var(--rc-radius);
+    box-shadow: var(--rc-shadow-md);
+    border: 1px solid var(--rc-border);
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all var(--rc-transition);
+    z-index: 100;
+  }
+
+  .rc-nav__dropdown:hover .rc-nav__dropdown-menu,
+  .rc-nav__dropdown--open .rc-nav__dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .rc-nav__dropdown-item {
+    display: block;
+    padding: 0.55rem 1.25rem;
+    font-family: var(--rc-body-font);
+    font-size: 0.85rem;
+    color: var(--rc-text);
+    text-decoration: none;
+    transition: all var(--rc-transition);
+  }
+
+  .rc-nav__dropdown-item:hover {
+    background: var(--rc-light);
+    color: var(--rc-red);
+  }
+
+  /* ─── Nav Toggle (Mobile) ─── */
+  .rc-nav__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    position: relative;
+  }
+
+  .rc-nav__hamburger,
+  .rc-nav__hamburger::before,
+  .rc-nav__hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--rc-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 8px;
+  }
+
+  .rc-nav__hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .rc-nav__hamburger::before {
+    content: "";
+    top: -7px;
+  }
+
+  .rc-nav__hamburger::after {
+    content: "";
+    top: 7px;
+  }
+
+  .rc-nav__toggle--active .rc-nav__hamburger {
+    background: transparent;
+  }
+
+  .rc-nav__toggle--active .rc-nav__hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .rc-nav__toggle--active .rc-nav__hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* ─── Hero ─── */
+  .rc-hero {
+    position: relative;
+    min-height: 680px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-family: var(--rc-body-font);
+  }
+
+  .rc-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .rc-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(31,58,86,0.92) 0%, rgba(31,58,86,0.75) 100%);
+    z-index: 1;
+  }
+
+  .rc-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 3rem;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .rc-hero__content {
+    color: var(--rc-white);
+  }
+
+  .rc-hero__badge {
+    display: inline-block;
+    background: rgba(220,20,60,0.15);
+    border: 1px solid rgba(220,20,60,0.3);
+    color: #fca5a5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+
+  .rc-hero__title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 3rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+    color: var(--rc-white);
+  }
+
+  .rc-hero__subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 1.75rem;
+    max-width: 560px;
+  }
+
+  .rc-hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .rc-hero__trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .rc-hero__reviews {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .rc-hero__review-badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .rc-hero__review-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--rc-white);
+  }
+
+  .rc-hero__review-dot--google {
+    background: #4285F4;
+  }
+
+  .rc-hero__review-dot--fb {
+    background: #1877F2;
+  }
+
+  .rc-hero__review-dot--bbb {
+    background: #00529B;
+  }
+
+  .rc-hero__review-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+
+  /* ─── Hero Form ─── */
+  .rc-hero__form-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rc-hero__form-card {
+    background: var(--rc-white);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .rc-hero__form-heading {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--rc-navy);
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .rc-hero__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .rc-hero__input {
+    font-family: var(--rc-body-font);
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--rc-border);
+    border-radius: var(--rc-radius);
+    background: var(--rc-white);
+    color: var(--rc-text);
+    width: 100%;
+    outline: none;
+    transition: border-color var(--rc-transition);
+    box-sizing: border-box;
+  }
+
+  .rc-hero__input:focus {
+    border-color: var(--rc-navy);
+  }
+
+  .rc-hero__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .rc-hero__submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* ─── Testimonials ─── */
+  .rc-testimonials__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .rc-testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .rc-testimonial-card {
+    background: var(--rc-white);
+    border: 1px solid var(--rc-border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: box-shadow var(--rc-transition);
+  }
+
+  .rc-testimonial-card:hover {
+    box-shadow: var(--rc-shadow-md);
+  }
+
+  .rc-testimonial-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .rc-testimonial-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--rc-white);
+    flex-shrink: 0;
+  }
+
+  .rc-testimonial-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .rc-testimonial-card__name {
+    font-family: var(--rc-heading-font);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--rc-text);
+  }
+
+  .rc-testimonial-card__stars {
+    display: flex;
+    gap: 0.1rem;
+  }
+
+  .rc-testimonial-card__text {
+    font-family: var(--rc-body-font);
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: var(--rc-text-light);
+    margin: 0;
+  }
+
+  /* ─── Services ─── */
+  .rc-services__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .rc-services__main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .rc-services__card {
+    background: var(--rc-white);
+    border: 1px solid var(--rc-border);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .rc-services__card--main {
+    border-top: 3px solid var(--rc-red);
+  }
+
+  .rc-services__card-title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--rc-navy);
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .rc-services__card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .rc-services__card-list li {
+    font-family: var(--rc-body-font);
+    font-size: 0.925rem;
+    color: var(--rc-text);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .rc-services__card-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    background: var(--rc-red);
+    border-radius: 50%;
+  }
+
+  .rc-services__card-list li a {
+    color: var(--rc-text);
+    text-decoration: none;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-services__card-list li a:hover {
+    color: var(--rc-red);
+  }
+
+  .rc-services__card-link {
+    font-size: 0.9rem;
+  }
+
+  /* Extra Services */
+  .rc-services__extra {
+    background: var(--rc-white);
+    border: 1px solid var(--rc-border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .rc-services__extra-title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--rc-navy);
+    margin: 0 0 1.5rem;
+  }
+
+  .rc-services__extra-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .rc-services__extra-item {
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--rc-border);
+    transition: box-shadow var(--rc-transition), transform var(--rc-transition);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rc-services__extra-item:hover {
+    box-shadow: var(--rc-shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .rc-services__extra-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+
+  .rc-services__extra-name {
+    font-family: var(--rc-body-font);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--rc-text);
+    padding: 0.875rem 1rem;
+    display: block;
+  }
+
+  /* GAF Callout */
+  .rc-services__callout {
+    background: var(--rc-navy);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .rc-services__callout-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .rc-services__callout-title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--rc-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .rc-services__callout-desc {
+    font-family: var(--rc-body-font);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* ─── Process ─── */
+  .rc-process__steps {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 3.5rem;
+  }
+
+  .rc-process__line {
+    position: absolute;
+    left: 1.375rem;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    width: 2px;
+    background: var(--rc-navy);
+    opacity: 0.2;
+  }
+
+  .rc-process__step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    position: relative;
+  }
+
+  .rc-process__number {
+    position: absolute;
+    left: -3.5rem;
+    top: 1.5rem;
+    width: 44px;
+    height: 44px;
+    background: var(--rc-red);
+    color: var(--rc-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.1rem;
+    z-index: 2;
+    box-shadow: 0 0 0 4px var(--rc-white);
+  }
+
+  .rc-process__content {
+    flex: 1;
+  }
+
+  .rc-process__step-title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--rc-navy);
+    margin: 0 0 0.5rem;
+  }
+
+  .rc-process__step-desc {
+    font-family: var(--rc-body-font);
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: var(--rc-text-light);
+    margin: 0;
+  }
+
+  /* ─── Service Area ─── */
+  .rc-area__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .rc-area__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--rc-white);
+    border: 1px solid var(--rc-border);
+    border-radius: 100px;
+    padding: 0.6rem 1.25rem;
+    font-family: var(--rc-body-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--rc-text);
+    text-decoration: none;
+    transition: all var(--rc-transition);
+  }
+
+  .rc-area__tag:hover {
+    border-color: var(--rc-red);
+    color: var(--rc-red);
+    background: rgba(220,20,60,0.04);
+  }
+
+  .rc-area__cta {
+    text-align: center;
+  }
+
+  /* ─── FAQ ─── */
+  .rc-faq__container {
+    max-width: 800px;
+  }
+
+  .rc-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .rc-faq__item {
+    border-bottom: 1px solid var(--rc-border);
+  }
+
+  .rc-faq__question {
+    font-family: var(--rc-heading-font);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--rc-text);
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .rc-faq__question::marker {
+    display: none;
+    content: "";
+  }
+
+  .rc-faq__question:hover {
+    color: var(--rc-red);
+  }
+
+  .rc-faq__chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .rc-faq__item[open] .rc-faq__chevron {
+    transform: rotate(180deg);
+  }
+
+  .rc-faq__item[open] .rc-faq__question {
+    color: var(--rc-red);
+  }
+
+  .rc-faq__answer {
+    padding: 0 0 1.25rem;
+  }
+
+  .rc-faq__answer p {
+    font-family: var(--rc-body-font);
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: var(--rc-text-light);
+    margin: 0;
+  }
+
+  /* ─── Footer CTA ─── */
+  .rc-footer-cta {
+    background: var(--rc-navy);
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .rc-footer-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rc-footer-cta__title {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 2.75rem;
+    color: var(--rc-white);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+  }
+
+  .rc-footer-cta__text {
+    font-family: var(--rc-body-font);
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+    margin: 0 0 2rem;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  /* ─── Footer ─── */
+  .rc-footer {
+    background: var(--rc-navy-dark);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--rc-body-font);
+  }
+
+  .rc-footer__main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .rc-footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .rc-footer__logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .rc-footer__brand-name {
+    font-family: var(--rc-heading-font);
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--rc-white);
+  }
+
+  .rc-footer__desc {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+    max-width: 320px;
+  }
+
+  .rc-footer__col-title {
+    font-family: var(--rc-heading-font);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--rc-white);
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .rc-footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rc-footer__list li a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-footer__list li a:hover {
+    color: var(--rc-white);
+  }
+
+  .rc-footer__contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .rc-footer__contact li svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .rc-footer__contact li a,
+  .rc-footer__contact li span {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-footer__contact li a:hover {
+    color: var(--rc-white);
+  }
+
+  .rc-footer__bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem 0;
+  }
+
+  .rc-footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .rc-footer__bottom p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+  }
+
+  .rc-footer__bottom-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .rc-footer__bottom-links a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color var(--rc-transition);
+  }
+
+  .rc-footer__bottom-links a:hover {
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ═══════════════════════════════════════════ RESPONSIVE ═══════════════════════════════════════════ */
+
+  /* 1024px — Tablet Landscape */
+  @media (max-width: 1024px) {
+    .rc-hero__inner {
+      grid-template-columns: 1fr 380px;
+      gap: 2rem;
+    }
+
+    .rc-hero__title {
+      font-size: 2.5rem;
+    }
+
+    .rc-services__extra-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rc-footer__main {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* 768px — Tablet Portrait */
+  @media (max-width: 768px) {
+    .rc-topbar__left {
+      gap: 1rem;
+    }
+
+    .rc-topbar__social {
+      display: none;
+    }
+
+    .rc-nav__toggle {
+      display: block;
+    }
+
+    .rc-nav__links {
+      display: none;
+      position: absolute;
+      top: var(--rc-nav-height);
+      left: 0;
+      right: 0;
+      background: var(--rc-white);
+      flex-direction: column;
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--rc-border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .rc-nav__links--open {
+      display: flex;
+    }
+
+    .rc-nav__link,
+    .rc-nav__phone {
+      padding: 0.75rem 0;
+      font-size: 0.95rem;
+    }
+
+    .rc-nav__cta {
+      margin-left: 0;
+      margin-top: 0.75rem;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .rc-nav__dropdown-menu {
+      position: static;
+      box-shadow: none;
+      border: none;
+      padding: 0 0 0 1rem;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      display: none;
+    }
+
+    .rc-nav__dropdown--open .rc-nav__dropdown-menu {
+      display: block;
+    }
+
+    .rc-hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .rc-hero__title {
+      font-size: 2.25rem;
+    }
+
+    .rc-hero__trust {
+      gap: 0.5rem 1rem;
+    }
+
+    .rc-hero__form-card {
+      max-width: 100%;
+    }
+
+    .rc-section {
+      padding: 3.5rem 0;
+    }
+
+    .rc-section__title {
+      font-size: 1.85rem;
+    }
+
+    .rc-testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rc-services__main-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rc-services__extra-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .rc-services__callout-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.75rem;
+    }
+
+    .rc-process__steps {
+      padding-left: 3rem;
+    }
+
+    .rc-process__number {
+      left: -3rem;
+      width: 38px;
+      height: 38px;
+      font-size: 1rem;
+    }
+
+    .rc-footer-cta__title {
+      font-size: 2rem;
+    }
+
+    .rc-footer__main {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .rc-footer__bottom-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  /* 375px — Mobile */
+  @media (max-width: 480px) {
+    .rc-container {
+      padding: 0 1rem;
+    }
+
+    .rc-topbar {
+      font-size: 0.7rem;
+    }
+
+    .rc-topbar__left {
+      gap: 0.75rem;
+    }
+
+    .rc-hero {
+      min-height: auto;
+    }
+
+    .rc-hero__inner {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .rc-hero__badge {
+      font-size: 0.65rem;
+    }
+
+    .rc-hero__title {
+      font-size: 1.75rem;
+    }
+
+    .rc-hero__subtitle {
+      font-size: 0.925rem;
+    }
+
+    .rc-hero__trust {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .rc-hero__trust-item {
+      font-size: 0.8rem;
+    }
+
+    .rc-hero__review-badges {
+      flex-wrap: wrap;
+    }
+
+    .rc-hero__form-card {
+      padding: 1.5rem;
+    }
+
+    .rc-section {
+      padding: 2.5rem 0;
+    }
+
+    .rc-section__title {
+      font-size: 1.5rem;
+    }
+
+    .rc-section__subtitle {
+      font-size: 0.95rem;
+    }
+
+    .rc-services__extra-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rc-services__callout-inner {
+      padding: 1.25rem;
+    }
+
+    .rc-services__callout-title {
+      font-size: 1.1rem;
+    }
+
+    .rc-process__steps {
+      padding-left: 2.75rem;
+    }
+
+    .rc-process__number {
+      left: -2.75rem;
+      width: 34px;
+      height: 34px;
+      font-size: 0.9rem;
+    }
+
+    .rc-area__tag {
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .rc-footer-cta {
+      padding: 3rem 0;
+    }
+
+    .rc-footer-cta__title {
+      font-size: 1.65rem;
+    }
+
+    .rc-footer__bottom-links {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+
+  /* 1440px+ — Wide Desktop */
+  @media (min-width: 1440px) {
+    .rc-container {
+      max-width: 1320px;
+    }
+
+    .rc-hero__title {
+      font-size: 3.5rem;
+    }
+
+    .rc-hero__inner {
+      grid-template-columns: 1fr 460px;
+    }
+
+    .rc-footer-cta__title {
+      font-size: 3.25rem;
+    }
+  }
+</style>
